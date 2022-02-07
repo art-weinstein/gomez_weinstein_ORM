@@ -7,11 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="profileORM" />
-        <module name="ORM" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ORM" target="8" />
       <module name="profileORM" target="8" />
     </bytecodeTargetLevel>
   </component>

@@ -1,6 +1,7 @@
-package ormtesting;
+package orm;
 
-
+import com.revature.models.Profile;
+import com.revature.util.ResourceNotFoundException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static ormtesting.ORMConnection.getConnection;
+import static orm.ORMConnection.getConnection;
 
-public class ORMTest {
+public class ORM {
 
     public static <DbData> List<DbData> getAllData(String dataBase) {
         Connection conn = getConnection();
@@ -40,7 +41,7 @@ public class ORMTest {
 
         //***** Try and make this a class variable
         // instead of method var so the whole class can use it **************
-        Connection conn = JDBCConnection.getConnection();
+        Connection conn = getConnection();
 
         //Make a String for the SQL statement you want executed. Use Placeholders for data values.
         String sql = "SELECT * FROM profiles WHERE p_id = ?";
@@ -65,9 +66,9 @@ public class ORMTest {
         return null;
     }
 
-    public static Profile deleteData(int id)throws ResourceNotFoundException{
+    public static Profile deleteData(int id)throws ResourceNotFoundException {
 
-        Connection conn = JDBCConnection.getConnection();
+        Connection conn = getConnection();
 
         String sql = "DELETE FROM profiles WHERE p_id = ? RETURNING *";
 
@@ -92,7 +93,7 @@ public class ORMTest {
     public static Profile addData(Profile p){
 
         String sql = "INSERT INTO profiles VALUES (default,?,?,?,?) RETURNING *";
-        Connection conn = JDBCConnection.getConnection();
+        Connection conn = getConnection();
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -117,7 +118,7 @@ public class ORMTest {
 
     public static Profile updateData(Profile change){
 
-        Connection conn = JDBCConnection.getConnection();
+        Connection conn = getConnection();
         String sql = "UPDATE profiles set f_name=?, l_name=?, m_name=?, p_num=? WHERE p_id = ? RETURNING *";
 
         try {

@@ -1,4 +1,4 @@
-package ormtesting;
+package orm;
 
 
 
@@ -43,14 +43,4 @@ public class ORMConnection {
         return conn;
     }
 
-        //Test connection
-    public static void main(String[] args) {
-
-        Connection conn1 = getConnection();
-        Connection conn2 = getConnection();
-
-        System.out.println(conn1);
-        System.out.println(conn2);
-
-    }
 }
